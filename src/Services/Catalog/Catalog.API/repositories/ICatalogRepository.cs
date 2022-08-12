@@ -7,11 +7,11 @@ namespace Catalog.API.repositories
     public interface ICatalogRepository
     {
         Task<IEnumerable<CatalogModel>> GetCatalogs();
-        Task<CatalogModel> GetCatalog(int id);
+        Task<CatalogModel> GetCatalog(string id);
         Task<IEnumerable<CatalogModel>> GetCatalogByName(string name);
 
         Task CreateCatalog(CatalogModel catalog);
         Task<bool> UpdateCatalog(CatalogModel catalog);
-        Task<bool> DeleteCatalog(int id);
+        Task<bool> DeleteCatalog(string id);
     }
 }

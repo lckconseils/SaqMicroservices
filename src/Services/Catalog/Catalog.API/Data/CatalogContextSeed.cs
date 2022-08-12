@@ -6,48 +6,48 @@ namespace Catalog.API.Data
 {
     public class CatalogContextSeed
     {
-        public static void SeedData(IMongoCollection<CatalogModel> productCollection)
+        public static void SeedData(IMongoCollection<CatalogModel> catalogCollection)
         {
-            bool existProduct = productCollection.Find(p => true).Any();
+            bool existProduct = catalogCollection.Find(p => true).Any();
             if (!existProduct)
             {
-                productCollection.InsertManyAsync(GetPreconfiguredProducts());
+                catalogCollection.InsertManyAsync(GetPreconfiguredCatalogs());
             }
         }
 
-        private static IEnumerable<CatalogModel> GetPreconfiguredProducts()
+        private static IEnumerable<CatalogModel> GetPreconfiguredCatalogs()
         {
             return new List<CatalogModel>()
             {
                 new CatalogModel()
                 {
-                    Id = 1,
+                    Id = "602d2149e773f2a3990b47f5",
                     Name = "SUV",
                 },
                 new CatalogModel()
                 {
-                    Id = 2,
+                    Id = "602d2149e773f2a3990b47f6",
                     Name = "Berline",
                 },
                 new CatalogModel()
                 {
-                    Id = 3,
+                    Id = "602d2149e773f2a3990b47f7",
                     Name = "Camion",
                 },
                 new CatalogModel()
                 {
-                    Id = 4,
+                    Id = "602d2149e773f2a3990b47f8",
                     Name = "Bateau",
                 },
 
                 new CatalogModel()
                 {
-                    Id = 5,
+                    Id = "602d2149e773f2a3990b47f9",
                     Name = "Jet",
                 },
                 new CatalogModel()
                 {
-                    Id = 6,
+                    Id = "602d2149e773f2a3990b47fa",
                     Name = "Bus",
                 },
             };

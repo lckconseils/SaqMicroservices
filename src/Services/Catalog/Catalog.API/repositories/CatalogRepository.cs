@@ -20,7 +20,7 @@ namespace Catalog.API.repositories
             await _context.Catalogs.InsertOneAsync(catalog);
         }
 
-        public async Task<bool> DeleteCatalog(int id)
+        public async Task<bool> DeleteCatalog(string id)
         {
             FilterDefinition<CatalogModel> filter = Builders<CatalogModel>.Filter.Eq(p => p.Id, id);
 
@@ -50,7 +50,7 @@ namespace Catalog.API.repositories
                             .ToListAsync();
         }
 
-        public async Task<CatalogModel> GetCatalog(int id)
+        public async Task<CatalogModel> GetCatalog(string id)
         {
             return await _context
                            .Catalogs

@@ -26,24 +26,24 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<CatalogModel>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<CatalogModel>>> GetCatalogs()
         {
-            var products = await _repository.GetCatalogs();
-            return Ok(products);
+            var catalogs = await _repository.GetCatalogs();
+            return Ok(catalogs);
         }
 
         [HttpGet("{id:length(24)}", Name = "GetCatlog")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(CatalogModel), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CatalogModel>> GetCatalogById(int id)
+        public async Task<ActionResult<CatalogModel>> GetCatalogById(string id)
         {
-            var product = await _repository.GetCatalog(id);
+            var catalog = await _repository.GetCatalog(id);
 
-            if (product == null)
+            if (catalog == null)
             {
                 _logger.LogError($"Catalog with id: {id}, not found.");
                 return NotFound();
             }
 
-            return Ok(product);
+            return Ok(catalog);
         }
 
 
@@ -80,7 +80,7 @@ namespace Catalog.API.Controllers
 
         [HttpDelete("{id:length(24)}", Name = "DeleteCatalog")]
         [ProducesResponseType(typeof(CatalogModel), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> DeleteProductById(int id)
+        public async Task<IActionResult> DeleteProductById(string id)
         {
             return Ok(await _repository.DeleteCatalog(id));
         }
