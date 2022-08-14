@@ -22,33 +22,33 @@ namespace Catalog.API.Data
                 new CatalogModel()
                 {
                     Id = "602d2149e773f2a3990b47f5",
-                    Name = "SUV",
+                    Name = "Spiritueux",
                 },
                 new CatalogModel()
                 {
                     Id = "602d2149e773f2a3990b47f6",
-                    Name = "Berline",
+                    Name = "Vin",
                 },
                 new CatalogModel()
                 {
                     Id = "602d2149e773f2a3990b47f7",
-                    Name = "Camion",
+                    Name = "Champagne",
                 },
                 new CatalogModel()
                 {
                     Id = "602d2149e773f2a3990b47f8",
-                    Name = "Bateau",
+                    Name = "Bière",
                 },
 
                 new CatalogModel()
                 {
                     Id = "602d2149e773f2a3990b47f9",
-                    Name = "Jet",
+                    Name = "Cidre",
                 },
                 new CatalogModel()
                 {
                     Id = "602d2149e773f2a3990b47fa",
-                    Name = "Bus",
+                    Name = "Saké",
                 },
             };
         }
