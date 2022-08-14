@@ -4,11 +4,25 @@ services:
   catalogdb:
     image: mongo
 
+  panierdb:
+    image: redis:alpine
+
+  portainer:
+    image: portainer/portainer-ce
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalog
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
 
+  panier.api:
+    image: ${DOCKER_REGISTRY-}panier
+    build:
+      context: .
+      dockerfile: Services/Panier.Api/Dockerfile
+
 volumes:
   mongo_data:
+  portainer_data:
+
