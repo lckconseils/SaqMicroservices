@@ -7,6 +7,12 @@ services:
   panierdb:
     image: redis:alpine
 
+  promotiondb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
   portainer:
     image: portainer/portainer-ce
 
@@ -22,7 +28,15 @@ services:
       context: .
       dockerfile: Services/Panier.Api/Dockerfile
 
+  promotion.api:
+    image: ${DOCKER_REGISTRY-}promotion
+    build:
+      context: .
+      dockerfile: Services/Promotion.API/Dockerfile
+
 volumes:
   mongo_data:
   portainer_data:
+  postgres_data:
+  pgadmin_data:
 
