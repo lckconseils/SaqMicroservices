@@ -4,7 +4,7 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 
-namespace Promotion.API.Repositories
+namespace Promotion.Grpc.Repositories
 {
     public class PromotionRepository : IPromotionRepository
     {

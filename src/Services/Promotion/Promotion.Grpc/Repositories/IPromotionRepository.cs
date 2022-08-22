@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Promotion.API.Repositories
+namespace Promotion.Grpc.Repositories
 {
     public interface IPromotionRepository
     {

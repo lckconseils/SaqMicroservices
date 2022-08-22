@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Npgsql;
 using Polly;
 
-namespace Promotion.API.Extensions
+namespace Promotion.Grpc.Extensions
 {
     public static class HostExtensions
     {
@@ -69,13 +69,13 @@ namespace Promotion.API.Extensions
             command.ExecuteNonQuery();
 
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Spiritueux', 'Promotion sur les spiritueux', 32);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Spiritueux', 'Promotion sur les spiritueux', 30);";
             command.ExecuteNonQuery();
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Champagne', 'Promotion sur les champagnes', 67);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Champagne', 'Promotion sur les champagnes', 57);";
             command.ExecuteNonQuery();
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Bière', 'Promotion sur les bières', 18);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Bière', 'Promotion sur les bières', 28);";
             command.ExecuteNonQuery();
         }
     }

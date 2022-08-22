@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Promotion.API
+namespace Promotion.Grpc
 {
     public class Coupon
     {
