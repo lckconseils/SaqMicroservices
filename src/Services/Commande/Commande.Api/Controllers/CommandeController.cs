@@ -1,39 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Commande.Application.Features.Orders.Commands.CheckoutOrder;
+using Commande.Application.Features.Orders.Commands.DeleteOrder;
+using Commande.Application.Features.Orders.Commands.UpdateOrder;
+using Commande.Application.Features.Orders.Queries.GetOrdersList;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Commande.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("api/v1/[controller]")]
+    public class CommandeController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IMediator _mediator;
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<CommandeController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public CommandeController(IMediator mediator)
         {
-            _logger = logger;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("{userName}", Name = "GetOrder")]
+        [ProducesResponseType(typeof(IEnumerable<OrdersVm>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<OrdersVm>>> GetOrdersByUserName(string userName)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var query = new GetOrdersListQuery(userName);
+            var orders = await _mediator.Send(query);
+            return Ok(orders);
+        }
+
+        // testing purpose
+        [HttpPost(Name = "CheckoutOrder")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult<int>> CheckoutOrder([FromBody] CheckoutOrderCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut(Name = "UpdateOrder")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> UpdateOrder([FromBody] UpdateOrderCommand command)
+        {
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}", Name = "DeleteOrder")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> DeleteOrder(int id)
+        {
+            var command = new DeleteOrderCommand() { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }
