@@ -34,9 +34,16 @@ services:
       context: .
       dockerfile: Services/Promotion.API/Dockerfile
 
+  promotion.grpc:
+    image: ${DOCKER_REGISTRY-}promotiongrpc
+    build:
+      context: .
+      dockerfile: Services/Promotion/Promotion.Grpc/Dockerfile
+
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
 

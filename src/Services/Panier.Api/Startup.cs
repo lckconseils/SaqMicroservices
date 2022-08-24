@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
+using Panier.Api.GrpcServices;
+using Panier.Api.Protos;
 using Panier.Api.Repositories;
 
 namespace Panier.Api
@@ -34,6 +32,18 @@ namespace Panier.Api
 
             // General Configuration
             services.AddScoped<IPanierRepository, PanierRepository>();
+            services.AddAutoMapper(typeof(Startup));
+
+            //httpclientFactory
+            services.AddHttpClient("Promotion", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("ApiSettings:PromotionUrl"));
+            });
+
+            // Grpc Configuration
+            services.AddGrpcClient<PromotionProtoService.PromotionProtoServiceClient>
+                (o => o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]));
+            services.AddScoped<PromotionGrpcService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

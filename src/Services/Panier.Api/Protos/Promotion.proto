@@ -1,0 +1,38 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Panier.Api.Protos";
+
+service PromotionProtoService {
+	rpc GetPromotion (GetPromotionRequest) returns (CouponModel);
+
+	rpc CreatePromotion (CreatePromotionRequest) returns (CouponModel);
+	rpc UpdatePromotion (UpdatePromotionRequest) returns (CouponModel);
+	rpc DeletePromotion (DeletePromotionRequest) returns (DeletePromotionResponse);
+}
+
+message GetPromotionRequest {
+	string productName = 1;	
+}
+
+message CouponModel {
+	int32 id = 1;
+	string productName = 2;
+	string description = 3;
+	int32 montant = 4;
+}
+
+message CreatePromotionRequest {
+	CouponModel coupon = 1;
+}
+
+message UpdatePromotionRequest {
+	CouponModel coupon = 1;
+}
+
+message DeletePromotionRequest {
+	string productName = 1;
+}
+
+message DeletePromotionResponse {
+	bool success = 1;
+}

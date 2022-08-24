@@ -68,6 +68,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=panierdb:6379"
+      - "GrpcSettings:DiscountUrl=http://promotion.grpc"
+      - "ApiSettings:PromotionUrl=http://promotion.api"
     depends_on:
       - panierdb
     ports:
@@ -83,4 +85,15 @@ services:
       - promotiondb
     ports:
       - "8002:80"
+
+
+  promotion.grpc:
+    container_name: promotion.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=promotiondb;Port=5432;Database=Promotiondb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - promotiondb
+    ports:
+      - "8003:80"
 

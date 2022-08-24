@@ -14,16 +14,32 @@
     <None Remove="AutoMapper" />
     <None Remove="Mapper\" />
     <None Remove="Microsoft.Extensions.Caching.StackExchangeRedis" />
+    <None Remove="Grpc.AspNetCore" />
+    <None Remove="GrpcServices\" />
+    <None Remove="Grpc.Net.Client" />
+    <None Remove="Grpc.Tools" />
+    <None Remove="Google.Protobuf" />
+    <None Remove="Protos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.48" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.8" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.23.2" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.47.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.48.0">
+    </PackageReference>
+    <PackageReference Include="Google.Protobuf" Version="3.21.5" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Mapper\" />
+    <Folder Include="GrpcServices\" />
+    <Folder Include="Protos\" />
   </ItemGroup>
+  <ItemGroup>
+  <Protobuf Include="Protos\Promotion.proto" GrpcServices="Client" />
+</ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Panier.Api.GrpcServices;
 using Panier.Api.Repositories;
 
 namespace Panier.Api.Controllers
@@ -15,11 +16,13 @@ namespace Panier.Api.Controllers
     public class PanierController : ControllerBase
     {
         private readonly IPanierRepository _repository;
-        //private readonly IMapper _mapper;
+        private readonly PromotionGrpcService _discountGrpcService;
+        private readonly IMapper _mapper;
 
-        public PanierController(IPanierRepository repository)
+        public PanierController(IPanierRepository repository, PromotionGrpcService promotionGrpcService)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _discountGrpcService = promotionGrpcService ?? throw new ArgumentNullException(nameof(promotionGrpcService));
         }
 
 
@@ -36,11 +39,11 @@ namespace Panier.Api.Controllers
         public async Task<ActionResult<Panier>> UpdatePanier([FromBody] Panier basket)
         {
             //// Communicate with Discount.Grpc and calculate lastest prices of products into sc
-            //foreach (var item in basket.Items)
-            //{
-            //    var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-            //    item.Price -= coupon.Amount;
-            //}
+            foreach (var item in basket.Items)
+            {
+                var coupon = await _discountGrpcService.GetPromotionApi(item.CatalogName);
+                item.Price -= coupon.Montant;
+            }
 
             return Ok(await _repository.UpdatePanier(basket));
         }

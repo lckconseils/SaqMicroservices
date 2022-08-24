@@ -69,13 +69,13 @@ namespace Promotion.Grpc.Extensions
             command.ExecuteNonQuery();
 
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Spiritueux', 'Promotion sur les spiritueux', 30);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Spiritueux', 'Promotion sur les spiritueux', 100);";
             command.ExecuteNonQuery();
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Champagne', 'Promotion sur les champagnes', 57);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Champagne', 'Promotion sur les champagnes', 150);";
             command.ExecuteNonQuery();
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Bière', 'Promotion sur les bières', 28);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Bière', 'Promotion sur les bières', 50);";
             command.ExecuteNonQuery();
         }
     }

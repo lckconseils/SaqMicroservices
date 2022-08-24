@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using Promotion.Grpc.Protos;
 using Promotion.Grpc.Repositories;
+using Promotion.Grpc.Protos;
 
 namespace Promotion.Grpc.Services
 {

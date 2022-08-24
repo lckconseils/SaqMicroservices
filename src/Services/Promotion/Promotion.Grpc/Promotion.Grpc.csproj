@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <DockerComposeProjectPath>../../../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,6 @@
     <None Remove="Repositories\" />
     <None Remove="Extensions\" />
     <None Remove="Mapper\" />
-    <None Remove="Protos\" />
     <None Remove="Services\" />
     <None Remove="Protos\promotion.proto" />
   </ItemGroup>
@@ -24,11 +24,11 @@
     <Folder Include="Repositories\" />
     <Folder Include="Extensions\" />
     <Folder Include="Mapper\" />
-    <Folder Include="Protos\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Protos\promotion.proto" GrpcServices="Server">
+      <Link>Protos\promotion.proto</Link>
     </Protobuf>
   </ItemGroup>
 </Project>
