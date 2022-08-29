@@ -17,7 +17,6 @@ services:
 
   promotiondb:
     container_name: promotiondb
-    restart: always
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
@@ -27,6 +26,15 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  commandedb:
+    container_name: commandedb
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin1234
+    ports:
+      - "1433:1433"
 
   pgadmin:
     container_name: pgadmin
@@ -96,4 +104,15 @@ services:
       - promotiondb
     ports:
       - "8003:80"
+
+
+  commande.api:
+    container_name: commande.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=Server=commandedb;Database=commandedb;User Id=sa;Password=admin1234;"
+    depends_on:
+      - commandedb
+    ports:
+      - "8004:80"
 

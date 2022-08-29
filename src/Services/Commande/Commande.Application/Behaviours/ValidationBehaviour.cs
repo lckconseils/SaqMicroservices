@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
+using ValidationException = Commande.Application.Exceptions.ValidationException;
 
 namespace Commande.Application.Behaviours
 {

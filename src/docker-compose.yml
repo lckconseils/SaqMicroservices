@@ -10,6 +10,9 @@ services:
   promotiondb:
     image: postgres
 
+  commandedb:
+    image:  mcr.microsoft.com/mssql/server:2017-latest
+
   pgadmin:
     image: dpage/pgadmin4
 
@@ -40,10 +43,17 @@ services:
       context: .
       dockerfile: Services/Promotion/Promotion.Grpc/Dockerfile
 
+  commande.api:
+    image: ${DOCKER_REGISTRY-}commande
+    build:
+      context: .
+      dockerfile: Services/Commande/Commande.Api/Dockerfile
+
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
 
 
