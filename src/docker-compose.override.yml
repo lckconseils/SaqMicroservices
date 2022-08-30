@@ -32,7 +32,7 @@ services:
     restart: always
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=admin1234
+      - SA_PASSWORD=IneaT123456789
     ports:
       - "1433:1433"
 
@@ -122,7 +122,7 @@ services:
     container_name: commande.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:OrderingConnectionString=Server=commandedb;Database=commandedb;User Id=sa;Password=admin1234;"
+      - "ConnectionStrings:OrderingConnectionString=Server=commandedb;Database=commandedb;User Id=sa;Password=IneaT123456789;"
       - "EventBusSettings:HostAddress=amqp://admin:admin1234@rabbitmq:5672"
     depends_on:
       - commandedb
@@ -130,3 +130,15 @@ services:
     ports:
       - "8004:80"
 
+
+  ocelotapigateway:
+    container_name: ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - catalog.api
+      - panier.api
+      - promotion.api
+      - commande.api
+    ports:
+      - "8010:80"
