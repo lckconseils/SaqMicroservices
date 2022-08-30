@@ -33,25 +33,27 @@ namespace Commande.Api
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
 
-            // MassTransit-RabbitMQ Configuration
-            //services.AddMassTransit(config => {
+            //MassTransit - RabbitMQ Configuration
+            services.AddMassTransit(config =>
+            {
 
-            //    //config.AddConsumer<PanierCheckoutConsumer>();
+                config.AddConsumer<PanierCheckoutConsumer>();
 
-            //    //config.UsingRabbitMq((ctx, cfg) => {
-            //    //    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
 
-            //    //    cfg.ReceiveEndpoint(EventBusConstants.PanierCheckoutQueue, c =>
-            //    //    {
-            //    //        c.ConfigureConsumer<PanierCheckoutConsumer>(ctx);
-            //    //    });
-            //    //});
-            //});
-            //services.AddMassTransitHostedService();
+                    cfg.ReceiveEndpoint(EventBusConstants.PanierCheckoutQueue, c =>
+                    {
+                        c.ConfigureConsumer<PanierCheckoutConsumer>(ctx);
+                    });
+                });
+            });
+            services.AddMassTransitHostedService();
 
             // General Configuration
             services.AddAutoMapper(typeof(Startup));
-            //services.AddScoped<PanierCheckoutConsumer>();
+            services.AddScoped<PanierCheckoutConsumer>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

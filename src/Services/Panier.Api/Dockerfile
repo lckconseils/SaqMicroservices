@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
 COPY ["Services/Panier.Api/Panier.Api.csproj", "Services/Panier.Api/"]
+COPY ["BuildingBlocks/EventBus.Messages/EventBus.Messages.csproj", "BuildingBlocks/EventBus.Messages/"]
 RUN dotnet restore "Services/Panier.Api/Panier.Api.csproj"
 COPY . .
 WORKDIR "/src/Services/Panier.Api"

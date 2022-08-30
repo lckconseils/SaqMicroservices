@@ -1,9 +1,9 @@
 ﻿using System;
 namespace Panier.Api
 {
-    public class PanierValidation
+    public class PanierCheckout
     {
-        public PanierValidation()
+        public PanierCheckout()
         {
         }
 

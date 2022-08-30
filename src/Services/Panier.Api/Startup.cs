@@ -1,4 +1,5 @@
 ﻿using System;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +45,14 @@ namespace Panier.Api
             services.AddGrpcClient<PromotionProtoService.PromotionProtoServiceClient>
                 (o => o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]));
             services.AddScoped<PromotionGrpcService>();
+
+            // MassTransit-RabbitMQ Configuration
+            services.AddMassTransit(config => {
+                config.UsingRabbitMq((ctx, cfg) => {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+            services.AddMassTransitHostedService();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

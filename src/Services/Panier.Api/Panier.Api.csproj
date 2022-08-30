@@ -32,6 +32,9 @@
     <PackageReference Include="Grpc.Tools" Version="2.48.0">
     </PackageReference>
     <PackageReference Include="Google.Protobuf" Version="3.21.5" />
+    <PackageReference Include="MassTransit" Version="7.1.6" />
+     <PackageReference Include="MassTransit.AspNetCore" Version="7.1.6" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -42,4 +45,9 @@
   <ItemGroup>
   <Protobuf Include="Protos\Promotion.proto" GrpcServices="Client" />
 </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\EventBus.Messages\EventBus.Messages.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

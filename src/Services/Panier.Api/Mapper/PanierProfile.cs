@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using EventBus.Messages.Events;
 
 namespace Panier.Api.Mapper
 {
@@ -7,7 +8,7 @@ namespace Panier.Api.Mapper
     {
         public PanierProfile()
         {
-            //CreateMap<PanierValidation, BasketCheckoutEvent>().ReverseMap();
+            CreateMap<PanierCheckout, PanierCheckoutEvent>().ReverseMap();
         }
     }
 }

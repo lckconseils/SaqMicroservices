@@ -36,6 +36,16 @@ services:
     ports:
       - "1433:1433"
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin1234
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   pgadmin:
     container_name: pgadmin
     restart: always
@@ -78,8 +88,10 @@ services:
       - "CacheSettings:ConnectionString=panierdb:6379"
       - "GrpcSettings:DiscountUrl=http://promotion.grpc"
       - "ApiSettings:PromotionUrl=http://promotion.api"
+      - "EventBusSettings:HostAddress=amqp://admin:admin1234@rabbitmq:5672"
     depends_on:
       - panierdb
+      - rabbitmq
     ports:
       - "8001:80"
 
@@ -111,8 +123,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:OrderingConnectionString=Server=commandedb;Database=commandedb;User Id=sa;Password=admin1234;"
+      - "EventBusSettings:HostAddress=amqp://admin:admin1234@rabbitmq:5672"
     depends_on:
       - commandedb
+      - rabbitmq
     ports:
       - "8004:80"
 
