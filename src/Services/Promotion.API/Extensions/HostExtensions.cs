@@ -69,13 +69,22 @@ namespace Promotion.API.Extensions
             command.ExecuteNonQuery();
 
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Spiritueux', 'Promotion sur les spiritueux', 32);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Bartenura Prosecco', 'Promotion sur les spiritueux', 30);";
             command.ExecuteNonQuery();
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Champagne', 'Promotion sur les champagnes', 67);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('1800 Blanco', 'Promotion sur les champagnes', 40);";
             command.ExecuteNonQuery();
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Bière', 'Promotion sur les bières', 18);";
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Boon Framboise Lambic', 'Promotion sur les bières', 20);";
+            command.ExecuteNonQuery();
+
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Château de Cartes', 'Promotion sur les spiritueux', 30);";
+            command.ExecuteNonQuery();
+
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Intermiel Benoîte', 'Promotion sur les champagnes', 10);";
+            command.ExecuteNonQuery();
+
+            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Montant) VALUES('Intermiel Bouquet Printanier', 'Promotion sur les bières', 20);";
             command.ExecuteNonQuery();
         }
     }

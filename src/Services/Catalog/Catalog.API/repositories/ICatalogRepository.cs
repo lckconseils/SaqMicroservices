@@ -6,12 +6,13 @@ namespace Catalog.API.repositories
 {
     public interface ICatalogRepository
     {
-        Task<IEnumerable<CatalogModel>> GetCatalogs();
-        Task<CatalogModel> GetCatalog(string id);
-        Task<IEnumerable<CatalogModel>> GetCatalogByName(string name);
+        Task<IEnumerable<Product>> GetCatalogs();
+        Task<Product> GetCatalog(string id);
+        Task<IEnumerable<Product>> GetCatalogByName(string name);
+        Task<IEnumerable<Product>> GetCatalogByCategory(string name);
 
-        Task CreateCatalog(CatalogModel catalog);
-        Task<bool> UpdateCatalog(CatalogModel catalog);
+        Task CreateCatalog(Product catalog);
+        Task<bool> UpdateCatalog(Product catalog);
         Task<bool> DeleteCatalog(string id);
     }
 }

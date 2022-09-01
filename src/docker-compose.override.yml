@@ -142,3 +142,19 @@ services:
       - commande.api
     ports:
       - "8010:80"
+
+  shopping.aggregator:
+    container_name: shopping.aggregator
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings:CatalogUrl=http://catalog.api"
+      - "ApiSettings:PanierUrl=http://panier.api"
+      - "ApiSettings:CommandeUrl=http://commande.api"
+    depends_on:
+      - catalog.api
+      - panier.api
+      - promotion.api
+      - commande.api
+    ports:
+      - "8005:80"
+

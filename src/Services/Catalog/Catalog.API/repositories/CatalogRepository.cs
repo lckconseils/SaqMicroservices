@@ -15,14 +15,14 @@ namespace Catalog.API.repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task CreateCatalog(CatalogModel catalog)
+        public async Task CreateCatalog(Product catalog)
         {
             await _context.Catalogs.InsertOneAsync(catalog);
         }
 
         public async Task<bool> DeleteCatalog(string id)
         {
-            FilterDefinition<CatalogModel> filter = Builders<CatalogModel>.Filter.Eq(p => p.Id, id);
+            FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
 
             DeleteResult deleteResult = await _context
                                                 .Catalogs
@@ -32,17 +32,27 @@ namespace Catalog.API.repositories
                 && deleteResult.DeletedCount > 0;
         }
 
-        public async Task<IEnumerable<CatalogModel>> GetCatalogByName(string name)
+        public async Task<IEnumerable<Product>> GetCatalogByName(string name)
         {
-            FilterDefinition<CatalogModel> filter = Builders<CatalogModel>.Filter.ElemMatch(p => p.Name, name);
+            FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(p => p.Name, name);
 
             return await _context
                             .Catalogs
-                            .Find(filter)
+                            .Find(d => d.Name == name)
                             .ToListAsync();
         }
 
-        public async Task<IEnumerable<CatalogModel>> GetCatalogs()
+        public async Task<IEnumerable<Product>> GetCatalogByCategory(string categoryName)
+        {
+            FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(p => p.Name, categoryName);
+
+            return await _context
+                            .Catalogs
+                            .Find(d => d.Category == categoryName)
+                            .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetCatalogs()
         {
             return await _context
                             .Catalogs
@@ -50,7 +60,7 @@ namespace Catalog.API.repositories
                             .ToListAsync();
         }
 
-        public async Task<CatalogModel> GetCatalog(string id)
+        public async Task<Product> GetCatalog(string id)
         {
             return await _context
                            .Catalogs
@@ -58,7 +68,7 @@ namespace Catalog.API.repositories
                            .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> UpdateCatalog(CatalogModel catalog)
+        public async Task<bool> UpdateCatalog(Product catalog)
         {
             var updateResult = await _context
                                         .Catalogs
