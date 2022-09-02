@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApiGateway", "ApiGate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Aggregator", "ApiGateways\Shopping.Aggregator\Shopping.Aggregator.csproj", "{7D6AC1C8-EF26-4CE2-B5ED-4E49BB92FFFC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{2B776185-6FA4-4A2C-9368-DA7476B37A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "IdentityServer\Identity\Identity.csproj", "{9FAD4C59-081D-42AF-A92A-B68911E07296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +99,10 @@ Global
 		{7D6AC1C8-EF26-4CE2-B5ED-4E49BB92FFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D6AC1C8-EF26-4CE2-B5ED-4E49BB92FFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D6AC1C8-EF26-4CE2-B5ED-4E49BB92FFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FAD4C59-081D-42AF-A92A-B68911E07296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FAD4C59-081D-42AF-A92A-B68911E07296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FAD4C59-081D-42AF-A92A-B68911E07296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FAD4C59-081D-42AF-A92A-B68911E07296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,5 +126,6 @@ Global
 		{C20A9E57-A2AE-4F8C-9FBF-A722F3D14D27} = {6A807812-D388-4CE8-B1AD-739151D9B923}
 		{85DFDAA6-F1C3-4D86-80F6-42448119E051} = {F6226BB0-7BD0-49B5-A29A-A6D597CD0203}
 		{7D6AC1C8-EF26-4CE2-B5ED-4E49BB92FFFC} = {F6226BB0-7BD0-49B5-A29A-A6D597CD0203}
+		{9FAD4C59-081D-42AF-A92A-B68911E07296} = {2B776185-6FA4-4A2C-9368-DA7476B37A4A}
 	EndGlobalSection
 EndGlobal
